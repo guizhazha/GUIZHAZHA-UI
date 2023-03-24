@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <title>Scrollbar</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="scrollbar" 
+      data-height="50px">
+      <scrollbar-component></scrollbar-component>
+    </div>
+  </body>
+  <script>
+    const scrollbarId = document.getElementById("scrollbar")
+
+    // 隐藏滚动条，但不影响内容滚动
+    const scrollbarStyle = document.createElement("style");
+    scrollbarStyle.innerHTML = "::-webkit-scrollbar { display: none; }"; // ::-webkit-scrollbar——整个滚动条
+    scrollbarId.appendChild(scrollbarStyle)
+
+    scrollbarId.style.height = scrollbarId.getAttribute("data-height")
+    scrollbarId.style.overflow = "auto"
+
+    const textList = [
+      "静夜思",
+      "李白",
+      "床前明月光，疑是地上霜。",
+      "举头望明月，低头思故乡。"
+    ]
+    for(let i=0; i<textList.length; i++)
+    {
+      const div = document.createElement("div")
+      div.textContent = textList[i]
+      scrollbarId.appendChild(div)
+    }
+  </script>
+</html>
